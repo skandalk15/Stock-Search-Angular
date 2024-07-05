@@ -46,7 +46,7 @@ Before you begin, ensure you have met the following requirements:
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/skandalk15/stock-search-angular.git
+git clone https://github.com/skandalk15/Stock-Search-Angular.git
 cd stock-search-app
 ```
 
