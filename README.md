@@ -27,7 +27,7 @@ This project is a Stock Search application built using Angular. It leverages sev
 
 ## Demo
 
-Check out the live demo of the Stock Search App [here](#).
+Check out the live demo of the Stock Search App [here](https://www.youtube.com/watch?v=8Dze7tFvcUM).
 
 ## Installation
 
