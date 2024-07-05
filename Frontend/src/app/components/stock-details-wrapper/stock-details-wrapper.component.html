@@ -1,0 +1,12 @@
+<div class="text-center">
+  <app-search-form-auto-mat></app-search-form-auto-mat>
+  <div *ngIf="!home">
+    <mat-progress-spinner class="mt-5 mx-auto" strokeWidth="5" diameter="60"
+      *ngIf="wrongTicker == false && !allDataAvailable()" mode="indeterminate"></mat-progress-spinner>
+    <div class="container  mt-5" *ngIf="loading == false && wrongTicker==true">
+      <app-alerts [reason]="wrongTickerReason"></app-alerts>
+    </div>
+    <app-stock-details *ngIf="allDataAvailable() && loading == false && ticker!= '' && wrongTicker == false"
+      [stockSearched]="stockSearched" [temp]="stockSearched['getPrice']"></app-stock-details>
+  </div>
+</div>

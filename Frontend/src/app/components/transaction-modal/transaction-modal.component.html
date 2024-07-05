@@ -1,0 +1,36 @@
+<div class="modal-header" *ngIf="myForm">
+  <h4 class="modal-title">{{portfolioElement['ticker']}}</h4>
+  <a type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">×</span>
+  </a>
+</div>
+<form [formGroup]="myForm" (ngSubmit)="submitForm()" *ngIf="myForm">
+  <div class="modal-body">
+    <div class="container">
+      <span>Current Price: {{portfolioElement['last']?.toFixed(2)}}</span><br>
+      <span>Money in Wallet: ${{money?.toFixed(2)}}</span>
+      <div class="form-inline d-flex flex-row justify-content-between align-items-center">
+        <label class="pr-2">Quantity: </label>
+        <input *ngIf="operationType == 'Sell'" (keyup)="checkStockError(sellValue.value)"
+          (click)="checkStockError(sellValue.value)" type="number" class="form-control py-1 align-middle mx-2" min="1"
+          [max]="portfolioElement['qty']" formControlName="quantity" required #sellValue />
+        <input *ngIf="operationType == 'Buy'" (keyup)="checkMoneyError(buyValue.value)"
+          (click)="checkMoneyError(buyValue.value)" type="number" class="form-control mt-1 py-1 align-middle mx-2" min="1" [max]="maxStock"
+          formControlName="quantity" required #buyValue />
+      </div>
+      <p *ngIf="moneyError" class="pt-2" style="color:red">Not enough money in wallet!</p>
+      <p *ngIf="stockError" class="pt-2" style="color:red">You cannot sell the stocks that you don't have!</p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="w-100 m-0 d-flex flex-row justify-content-between">
+      <span class="pull-left pt-2 pl-2">Total : {{ (portfolioElement['last'] * myForm?.get('quantity').value)?.toFixed(2)
+        }}</span>
+      <div class="float-right">
+        <button class="btn btn-success float-right" [disabled]="!myForm?.valid">
+          {{operationType}}
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

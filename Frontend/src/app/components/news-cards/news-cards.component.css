@@ -1,0 +1,43 @@
+.bg-grey{
+  background-color: #FAFAFA !important;
+}
+
+
+@media (min-width: 900px) {
+  #newsThumbnail {
+    max-height:75px;
+  }
+}
+
+
+
+/*#newsThumbnail{*/
+/*  vertical-align: center;*/
+/*  column-fill: auto;*/
+/*}*/
+
+/*.cardFixed{*/
+/*  height: 70px;*/
+/*  overflow: hidden;*/
+/*}*/
+
+/*.v-center{*/
+/*  vertical-align: center;*/
+/*  margin: 0 auto;*/
+/*}*/
+
+/*.imgHere{*/
+/*  max-height: 100%;*/
+/*  max-width: 100%;*/
+/*  position: absolute;*/
+/*  top: 0;*/
+/*  bottom: 0;*/
+/*  left: 0;*/
+/*  right: 0;*/
+/*  margin: auto;*/
+/*}*/
+
+/*.card-horizontal {*/
+/*  display: flex;*/
+/*  flex: 1 1 auto;*/
+/*}*/

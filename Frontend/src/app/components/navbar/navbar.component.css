@@ -1,0 +1,10 @@
+.bg-purple{
+  background-color: #2224ab;
+}
+.active{
+  /*border: #c2c3c4 solid 3px;*/
+  /*border-right: #c2c3c4 solid 3px;*/
+  /*background-color: #C399ff;*/
+  border: white solid 0.13em;
+  border-radius: 1em;
+}

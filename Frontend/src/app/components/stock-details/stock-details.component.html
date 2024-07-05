@@ -1,0 +1,154 @@
+<div class="container-lg p-sm-0">
+  <div class="my-3 col-12">
+    <ngb-alert *ngIf="successMessage" [type]="alertColor" (close)="successMessage = ''">{{ successMessage }}</ngb-alert>
+    <ngb-alert *ngIf="boughtMessage" [type]="alertColor1" (close)="boughtMessage = ''">{{ boughtMessage }}</ngb-alert>
+    <div class="row mt-3">
+      <div class="col-5 pr-0 text-left">
+        <div class="h1 mb-0">
+          {{stockSearched['getDetails']['ticker']}}<a *ngIf="isFavourite == false" (click)="setWatchlist(true)"
+            class="btn align-super">
+            <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-star" fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288l1.847-3.658 1.846 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.564.564 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
+            </svg>
+          </a><a *ngIf="isFavourite == true" (click)="setWatchlist(false)" class="btn align-super">
+            <svg color="gold" width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-star-fill"
+              fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+            </svg>
+          </a>
+        </div>
+        <div class="h3 text-muted">
+          {{stockSearched['getDetails']['name']}}
+        </div>
+        <div>{{stockSearched['getDetails']['exchangeCode']}}</div>
+        <button class="btn px-3 mt-2 mx-1 btn-success mx-lg-2" (click)="openFormModal($event, 'Buy')">
+          Buy
+        </button>
+        <button *ngIf="portfolioTickerArray.includes(stockSearched['getDetails']['ticker'])"
+          class="btn px-3 mt-2 mx-1 btn-danger mx-lg-2" (click)="openFormModal($event, 'Sell')">
+          Sell
+        </button>
+      </div>
+
+
+
+
+
+
+
+      <div *ngIf="stockSearched['getDetails']['logo'] && stockSearched['getDetails']['logo']!=''"
+        class="mobile-logo col-2 text-center">
+
+        <img id="stock-logo" src="{{stockSearched['getDetails']['logo']}}" onerror="this.style.display='none';">
+
+      </div>
+      <div *ngIf="!stockSearched['getDetails']['logo'] || stockSearched['getDetails']['logo']==''"
+        class="mobile-logo col-2 text-center">
+
+        <img id="stock-logo" src="../../../assets/finnhub.png" onerror="this.style.display='none';">
+
+      </div>
+
+
+      <div class="col-5 pl-0 text-right">
+        <div class="h1 mb-0" [style]="{'color': stockSearched['getPrice']['color']}">
+          {{stockSearched['getPrice']['last']| number:'1.2-2'}}
+        </div>
+        <div class="h3" [style]="{'color': stockSearched['getPrice']['color']}">
+          <svg *ngIf="stockSearched['getPrice']['color'] == 'red'" color="red" width="0.7em" height="1em"
+            viewBox="0 1 16 16" class="bi bi-caret-down-filled" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+          </svg>
+          <svg *ngIf="stockSearched['getPrice']['color'] == 'green' " color="green" width="0.7em" height="1em"
+            viewBox="0 1 16 16" class="bi bi-caret-up-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+          </svg>
+          {{stockSearched['getPrice']['change']| number:'1.2-2'}} ({{stockSearched['getPrice']['changePercentage'] |
+          number:'1.2-2'}}%)
+        </div>
+        <div>{{dateToday | date: 'yyyy-MM-dd HH:mm:ss'}}</div>
+      </div>
+
+
+
+      <!-- <div class="col-6 text-left">
+        <div class="h3 text-muted">
+          {{stockSearched['getDetails']['name']}}
+        </div>
+      </div> -->
+      <!-- <div class="col-6 text-right" [style]="{'color': stockSearched['getPrice']['color']}">
+        <div class="h3">
+          <svg *ngIf="stockSearched['getPrice']['color'] == 'red'" color="red" width="0.7em" height="1em"
+            viewBox="0 1 16 16" class="bi bi-caret-down-filled" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+          </svg>
+          <svg *ngIf="stockSearched['getPrice']['color'] == 'green' " color="green" width="0.7em" height="1em"
+            viewBox="0 1 16 16" class="bi bi-caret-up-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M7.247 4.86l-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+          </svg>
+          {{stockSearched['getPrice']['change']}} ({{stockSearched['getPrice']['changePercentage']}}%)
+        </div>
+      </div> -->
+      <!-- <div class="col-6 text-left">
+        <span>{{stockSearched['getDetails']['exchangeCode']}}</span>
+      </div> -->
+      <!-- <div class="col-6 text-right">
+        <span>{{dateToday | date: 'yyyy-MM-dd HH:mm:ss'}}</span>
+
+      </div> -->
+      <!-- <div class="col-6 text-center">
+        <img src="{{stockSearched['getDetails']['logo']}}">
+      </div> -->
+      <!--
+      <div class="col-12 mt-2 text-left">
+        <button class="btn px-3 btn-success" (click)="openFormModal($event, 'Buy')">
+          Buy
+        </button>
+      </div> -->
+      <div class="col-12 mt-3 text-center">
+        <span style="color:red" *ngIf="stockSearched['getPrice']['marketOpen'] == false"><b>
+            Market Closed on {{stockSearched['getPrice']['humantimestamp'] | date: 'yyyy-MM-dd HH:mm:ss' : 'PST'}}</b>
+          <!-- | date: 'yyyy-MM-dd HH:mm:ss' : 'PDT' -->
+        </span>
+        <span style="color:green" *ngIf="stockSearched['getPrice']['marketOpen'] == true"><b>
+            Market is Open</b>
+        </span>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="col-12">
+    <mat-tab-group [selectedIndex]="selectedTab" (selectedIndexChange)="setSelectedTab($event)" mat-stretch-tabs
+      mat-align-tabs="center" animationDuration="0ms">
+      <mat-tab label="Summary">
+        <app-summary-tab [stockSearched]="stockSearched"></app-summary-tab>
+      </mat-tab>
+      <mat-tab label="Top News">
+        <div class="mt-4"></div>
+        <app-news-card-holder [allNews]="stockSearched['getNews']"></app-news-card-holder>
+      </mat-tab>
+      <mat-tab label="Charts">
+        <ng-template matTabContent>
+          <app-stock-chart-ohlc [rangeSelectorEnable]=true [chartColor]="stockSearched['getPrice']['color']"
+            [stockHistory]="stockSearched['getHistory']" [ticker]="stockSearched['getPrice']['ticker']">
+          </app-stock-chart-ohlc>
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="Insights">
+        <ng-template matTabContent>
+          <app-insights [sentiment]="stockSearched['getSentiment']"
+            [recommendation]="stockSearched['getRecommendation']" [name]="stockSearched['getDetails']['name']"
+            [earnings]="stockSearched['getEarnings']">
+          </app-insights>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

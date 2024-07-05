@@ -1,0 +1,32 @@
+.btn-theme{
+  /*background-color: #7349f7;*/
+  color: #2224ab;
+  /*color: white;*/
+}
+
+.border-search-bar{
+  border: #2224ab solid;
+  border-radius: 2em;
+}
+
+input:focus{
+  outline: none;
+}
+
+.w-90{
+  width: 90%;
+}
+
+@media (min-width: 900px) {
+  input {
+    width:80%;
+  }
+}
+
+a:hover{
+  cursor: pointer;
+}
+
+.app-heading{
+  font-size: 2.3rem;
+}

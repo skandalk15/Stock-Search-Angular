@@ -1,0 +1,35 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend files",
+  "main": "app.js",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "none"
+  },
+  "keywords": [
+    "first",
+    "attempt"
+  ],
+  "author": "CSCI 571",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "fetch": "^1.1.0",
+    "finnhub": "^1.2.10",
+    "mongodb": "^6.3.0",
+    "nodemon": "^2.0.4",
+    "string-strip-html": "^6.0.0",
+    "xhr2": "^0.2.1"
+  }
+}

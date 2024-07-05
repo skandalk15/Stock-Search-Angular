@@ -1,0 +1,49 @@
+.align-super{
+  vertical-align: super;
+}
+
+.btn-violet{
+  background-color: #7349f7;
+  color: white;
+}
+
+@media (min-width: 900px) {
+  img {
+    width: 55%;
+  }
+}
+
+@media (max-width: 600px) {
+  img {
+    width: 50px;
+  }
+
+  .mobile-logo{
+    padding: 0px;
+  }
+
+  .h1{
+    font-size: 25px;
+  }
+
+  .h3{
+    font-size:20px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+  img {
+    width: 45%;
+  }
+}
+
+.alert-danger-custom{
+
+  color:red;
+  padding: 4px 8px;
+}
+
+.alert-success-custom{
+  color: green;
+  padding: 4px 8px;
+}

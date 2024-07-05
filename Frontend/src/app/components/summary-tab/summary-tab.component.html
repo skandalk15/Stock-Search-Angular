@@ -1,0 +1,72 @@
+<div class="row mx-0 mt-3">
+  <div class="col-lg-6 mx-0 mb-3 row">
+    <div class="col-lg-6 col-sm-12 text-left mt-3">
+      <table class="border-0  mx-auto">
+        <tr>
+          <td><b>High Price:</b></td>
+          <td>{{stockSearched['getPrice']['high']?.toFixed(2)}}</td>
+        </tr>
+        <tr>
+          <td><b>Low Price:</b></td>
+          <td>{{stockSearched['getPrice']['low']?.toFixed(2)}}</td>
+        </tr>
+        <tr>
+          <td><b>Open Price:</b></td>
+          <td>{{stockSearched['getPrice']['open']?.toFixed(2)}}</td>
+        </tr>
+        <tr>
+          <td><b>Prev. Close:</b></td>
+          <td>{{stockSearched['getPrice']['prevClose']?.toFixed(2)}}</td>
+        </tr>
+        <!-- <tr>
+          <td>Volume:</td>
+          <td>{{stockSearched['getPrice']['volume']}}</td>
+        </tr> -->
+      </table>
+    </div>
+
+    <!-- <div *ngIf="stockSearched['getPrice']['marketOpen'] == true" class="col-6 text-left mt-3">
+      <table class="border-0 mx-auto">
+        <tr>
+          <td>Mid Price: </td>
+          <td *ngIf="stockSearched['getPrice']['mid'] != null">{{stockSearched['getPrice']['mid']}}</td>
+          <td *ngIf="stockSearched['getPrice']['mid'] == null">-</td>
+        </tr>
+        <tr>
+          <td>Ask Price: </td>
+          <td>{{stockSearched['getPrice']['askPrice']}}</td>
+        </tr>
+        <tr>
+          <td>Ask Size: </td>
+          <td>{{stockSearched['getPrice']['askSize']}}</td>
+        </tr>
+        <tr>
+          <td>Bid Price: </td>
+          <td>{{stockSearched['getPrice']['bidPrice']}}</td>
+        </tr>
+        <tr>
+          <td>Bid Size: </td>
+          <td>{{stockSearched['getPrice']['bidSize']}}</td>
+        </tr>
+      </table>
+    </div> -->
+    <div class="mt-3 py-1 col-12">
+      <span class="h5"><u>About the company</u></span>
+    </div>
+    <div class="mt-1 col-12 text-left">
+      <p><b>IPO Start Date: </b>{{stockSearched['getDetails']['ipo'].slice(0,10)}}</p>
+      <p><b>Industry: </b>{{stockSearched['getDetails']['finnhubIndustry']}}</p>
+      <p><b>Webpage: </b><a target="_blank" href="{{stockSearched['getDetails']['weburl']}}">{{stockSearched['getDetails']['weburl']}}
+        </a></p>
+      <p><b>Company peers:</b></p>
+      <a *ngFor="let peer of stockSearched['getPeers']" (click)="navigateToDetailsPage(peer)">{{peer}}, </a>
+    </div>
+
+  </div>
+
+  <div class="col-lg-6">
+    <app-temp-chart [rangeSelectorEnable]=false [chartColor]="stockSearched['getPrice']['color']"
+      [stockHistory]="stockSearched['getLastChart']" [ticker]="stockSearched['getPrice']['ticker']">
+    </app-temp-chart>
+  </div>
+</div>
