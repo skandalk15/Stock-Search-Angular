@@ -121,23 +121,76 @@ For historical stock data visualization, the app uses the Polygon.io API:
 
 ## Deployment
 
-The application can be deployed on various cloud platforms such as Google Cloud, AWS, or Azure. Below are general steps for deploying on Vercel:
+The application can be deployed on Google Cloud Platform (GCP). Below are the steps for deploying on GCP:
 
-1. **Login to Vercel**
+### Deploying on Google Cloud Platform
 
-If you don't have an account, sign up for free at [vercel.com](https://vercel.com).
+1. **Set up Google Cloud account**
+
+If you don't have an account, sign up for free at [cloud.google.com](https://cloud.google.com).
 
 2. **Create a new project**
 
-Click on "New Project" and import the repository from GitHub.
+Go to the Google Cloud Console and create a new project.
 
-3. **Configure project settings**
+3. **Install Google Cloud SDK**
 
-Follow the prompts to configure your project settings and environment variables.
+Download and install the [Google Cloud SDK](https://cloud.google.com/sdk).
 
-4. **Deploy**
+4. **Initialize the SDK**
 
-Click on "Deploy" and Vercel will automatically build and deploy your project.
+Run the following command to initialize the SDK and authenticate your account:
+
+```bash
+gcloud init
+```
+
+5. **Configure your project**
+
+Set your project ID:
+
+```bash
+gcloud config set project YOUR_PROJECT_ID
+```
+
+6. **Deploy the backend**
+
+Navigate to the backend directory and create an `app.yaml` file with the following content:
+
+```yaml
+runtime: nodejs14
+env: flex
+```
+
+Deploy the backend:
+
+```bash
+gcloud app deploy
+```
+
+7. **Deploy the frontend**
+
+Navigate to the frontend directory and build the Angular app:
+
+```bash
+ng build --prod
+```
+
+Create an `app.yaml` file in the `dist` directory with the following content:
+
+```yaml
+runtime: static
+```
+
+Deploy the frontend:
+
+```bash
+gcloud app deploy
+```
+
+8. **Access your application**
+
+Once the deployment is complete, you can access your application via the URL provided by GCP.
 
 ## Contributing
 
@@ -157,4 +210,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ---
 
-Thank you for using and contributing to the Stock Search App! If you have any questions or need further assistance, feel free to open an issue or contact us at [your-email@example.com].
+Thank you for using and contributing to the Stock Search App! If you have any questions or need further assistance, feel free to open an issue or contact us at sohamkan15@gmail.com.
